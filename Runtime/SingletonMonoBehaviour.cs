@@ -42,18 +42,7 @@ namespace Acfeel.SoundSystem
             }
         }
 
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-        static void ResetStaticStateOnSubsystemRegistration()
-        {
-            ResetStaticState();
-        }
-
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-        static void ResetStaticStateBeforeSceneLoad()
-        {
-            ResetStaticState();
-        }
-
+        // Runtime initialization attributes must be declared on a non-generic concrete type.
         public static void ResetSingletonState()
         {
             ResetStaticState();

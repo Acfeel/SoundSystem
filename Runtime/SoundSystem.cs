@@ -24,6 +24,19 @@ namespace Acfeel.SoundSystem
         public SoundSystemControl Amb { get; set; }
         public static SoundSystemControl MainAmb => Instance ? Instance.Amb : null;
 
+        // Keep Unity initialization callbacks on this non-generic type.
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetStaticStateOnSubsystemRegistration()
+        {
+            ResetSingletonState();
+        }
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        static void ResetStaticStateBeforeSceneLoad()
+        {
+            ResetSingletonState();
+        }
+
         protected override void Awake()
         {
             base.Awake();
